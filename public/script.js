@@ -5,7 +5,6 @@ async function kurs(price) {
     let convertedPrice = Math.round(conversionRate * price);
     return convertedPrice;
 }
-
 // Function to handle component selection
 function selectComponent(componentType) {
     console.log(componentType);
@@ -40,65 +39,52 @@ function loadSelections() {
 function saveSelection(componentType, component) {
     localStorage.setItem(componentType, JSON.stringify(component));
     updateButton(componentType, component);
+
+    if (componentType === 'hovedkort') {
+        localStorage.setItem('motherboardSocket', component.socket);
+    }
 }
+
 
 // Load selections when the page loads
 window.onload = loadSelections;
 
-const hovedkortEL = document.getElementById('hovedkort');
-const kabinettEL = document.getElementById('case');
-const prosessorEL = document.getElementById('cpu');
-const prosessorKjølerEL = document.getElementById('CpuCooler');
-const minneEL = document.getElementById('memory');
-const lagringEL = document.getElementById('disk');
-const skjermkortEL = document.getElementById('gpu');
-const strømforsyningEL = document.getElementById('psu');
+// Calculate total price function (not shown in your provided code)
+// Ensure it correctly calculates and updates the total price display
 
-hovedkortEL.addEventListener('mouseover', () => {
-    calculateTotal()
-});
+const bodyEL = document.querySelector('body');
 
-kabinettEL.addEventListener('mouseover', () => {
-    calculateTotal()
-});
-
-prosessorEL.addEventListener('mouseover', () => {
-    calculateTotal()
-});
-
-prosessorKjølerEL.addEventListener('mouseover', () => {
-    calculateTotal()
-});
-
-minneEL.addEventListener('mouseover', () => {
-    calculateTotal()
-});
-
-lagringEL.addEventListener('mouseover', () => {
-    calculateTotal()
-});
-
-skjermkortEL.addEventListener('mouseover', () => {
-    calculateTotal()
-});
-
-strømforsyningEL.addEventListener('mouseover', () => {
-    calculateTotal()
+bodyEL.addEventListener('mouseover', () => {
+    calculateTotal();
 });
 
 function calculateTotal() {
-    let total = 0
-    const selectedPsu = parseFloat(strømforsyningEL.value)
-    const selectedGpu = parseFloat(skjermkortEL.value)
-    const selectedDisk = parseFloat(lagringEL.value)
-    const selectedMemory = parseFloat(minneEL.value)
-    const selectedCpuCooler = parseFloat(prosessorKjølerEL.value)
-    const selectedCpu = parseFloat(prosessorEL.value)
-    const selectedCase = parseFloat(kabinettEL.value)
-    const selectedMotherboard = parseFloat(hovedkortEL.value)
-    console.log(selectedMotherboard, selectedCase, selectedCpu, selectedCpuCooler, selectedMemory, selectedDisk, selectedGpu, selectedPsu)
-    total = selectedPsu + selectedGpu + selectedDisk + selectedMemory + selectedCpuCooler + selectedCpu + selectedCase + selectedMotherboard
-    total = Math.round(total)
+    let total = 0;
+    const selectedPsu = parseFloat(document.getElementById('psu').value);
+    const selectedGpu = parseFloat(document.getElementById('gpu').value);
+    const selectedDisk = parseFloat(document.getElementById('disk').value);
+    const selectedMemory = parseFloat(document.getElementById('memory').value);
+    const selectedCpuCooler = parseFloat(document.getElementById('CpuCooler').value);
+    const selectedCpu = parseFloat(document.getElementById('cpu').value);
+    const selectedCase = parseFloat(document.getElementById('case').value);
+    const selectedMotherboard = parseFloat(document.getElementById('hovedkort').value);
+
+    total = selectedPsu + selectedGpu + selectedDisk + selectedMemory + selectedCpuCooler + selectedCpu + selectedCase + selectedMotherboard;
+    total = Math.round(total);
+    
     const footer = document.querySelector('footer');
     footer.innerHTML = `Total pris ${total} kr`;
+}
+
+// Function to filter and display CPUs based on selected motherboard socket
+async function filterAndDisplayCPUs(socketType) {
+    const response = await fetch('/cpu');
+    const components = await response.json();
+    const filteredCPUs = components.filter(cpu => cpu.socket.startsWith(socketType));
+    const componentGrid = document.getElementById('componentGrid');
+    componentGrid.innerHTML = ''; // Clear existing CPU components
+    filteredCPUs.forEach(cpu => {
+        const card = createComponentCard(cpu, 'cpu');
+        componentGrid.appendChild(card);
+    });
 }

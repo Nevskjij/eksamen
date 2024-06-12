@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="stylesheet.css">
+    <title>PcPartPicker</title>
+</head>
+<body>
+    <header>Norsk PcPartPicker</header>
+    <main>
+        <h1>Hovedkomponenter</h1>
+        <div id="hoved">
+            <p>Hovedkort</p>
+            <button id="hovedkort" onclick="selectComponent('hovedkort')">Legg til Hovedkort</button>
+            <p>Kabinett</p>
+            <button id="case" onclick="selectComponent('case')">Legg til Kabinett</button>
+            <p>Prosessor</p>
+            <button id="cpu" onclick="selectComponent('cpu')">Legg til Prosessor</button>
+            <p>Prosessor Kjøler</p>
+            <button id="CpuCooler" onclick="selectComponent('CpuCooler')">Legg til Prosessor Kjøler</button>
+            <p>Minne</p>
+            <button id="memory" onclick="selectComponent('memory')">Legg til Minne</button>
+            <p>Lagring</p>
+            <button id="disk" onclick="selectComponent('disk')">Legg til Lagring</button>
+            <p>Skjermkort</p>
+            <button id="gpu" onclick="selectComponent('gpu')">Legg til Skjermkort</button>
+            <p>Strømforsyning</p>
+            <button id="psu" onclick="selectComponent('psu')">Legg til Strømforsyning</button>
+        </div>
+        <h2>Ekstra komponenter</h2>
+    </main>
+    <footer></footer>
+    <script src="script.js"></script>
+</body>
+</html>

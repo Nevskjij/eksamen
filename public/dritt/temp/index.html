@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="stylesheet.css">
+    <title>PcPartPicker</title>
+</head>
+<body>
+    <header>Norsk PcPartPicker</header>
+    <main>
+        <h1>Hovedkomponenter</h1>
+            <div id="hoved">
+                <p>Hovedkort</p>
+                <select id="hovedkort"></select>
+                <p>Kabinett</p>
+                <select id="kabinett"></select>
+                <p>Prosessor</p>
+                <select id="prosessor"></select>
+                <p>Prosessor Kjøler</p>
+                <select id="prosessorKjøler"></select>
+                <p>Minne</p>
+                <select id="minne"></select>
+                <p>Lagring</p>
+                <select id="lagring"></select>
+                <p>Skjermkort</p>
+                <select id="skjermkort"></select>
+                <p>Strømforsyning</p>
+                <select id="strømforsyning"></select>
+            </div>
+        <h2>Ekstra komponenter</h2>
+    </main>
+    <footer></footer>
+</body>
+</html>
+<script src="script.js">
+
+
+/*
+    //src="/script.js"
+    //Hovedkomponenter
+    const hovedkortEL = document.getElementById('hovedkort');
+    const kabinett = document.getElementById('kabinett');
+    const prosessor = document.getElementById('prosessor');
+    const prosessorKjøler = document.getElementById('prosessorKjøler');
+    const minne = document.getElementById('minne');
+    const lagring = document.getElementById('lagring');
+    const skjermkort = document.getElementById('skjermkort');
+    const strømforsyning = document.getElementById('strømforsyning');
+
+    //Ekstra komponenter
+    /*
+    const lydkort = document.getElementById('lydkort');
+    const nettverkskort = document.getElementById('nettverkskort');
+    const operativsystem = document.getElementById('operativsystem');
+    const optisk = document.getElementById('optisk');
+    const vifter = document.getElementById('vifter');
+    const annet = document.getElementById('annet');
+    */
+/*
+async function showMotherboards(){
+    const response = await fetch('/hovedkort');
+    const data = await response.json();
+    //console.log(data);
+    data.forEach(hovedkort => {
+        const option = document.createElement('option');
+        option.value = hovedkort.id;
+        option.text = hovedkort.name;
+        hovedkortEL.appendChild(option);
+    });
+}
+
+function start(){
+    showMotherboards();
+}
+start();
+*/
+</script>

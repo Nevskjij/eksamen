@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Select Component</title>
+</head>
+<body>
+    <h1>Select Component</h1>
+    <div class="grid-container" id="componentGrid"></div>
+    <script src="select.js"></script>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    text-align: center;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+    padding: 16px;
+}
+
+.component-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    background-color: #f9f9f9;
+    transition: box-shadow 0.3s;
+}
+
+.component-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.component-name {
+    font-size: 1.2em;
+    margin-bottom: 8px;
+}
+
+.component-price {
+    color: #2a9d8f;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.component-type,
+.component-color,
+.component-side-panel {
+    margin-bottom: 4px;
+}
+
+    </style>
+</body>
+</html>

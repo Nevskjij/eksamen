@@ -44,3 +44,61 @@ function saveSelection(componentType, component) {
 
 // Load selections when the page loads
 window.onload = loadSelections;
+
+const hovedkortEL = document.getElementById('hovedkort');
+const kabinettEL = document.getElementById('case');
+const prosessorEL = document.getElementById('cpu');
+const prosessorKjølerEL = document.getElementById('CpuCooler');
+const minneEL = document.getElementById('memory');
+const lagringEL = document.getElementById('disk');
+const skjermkortEL = document.getElementById('gpu');
+const strømforsyningEL = document.getElementById('psu');
+
+hovedkortEL.addEventListener('mouseover', () => {
+    calculateTotal()
+});
+
+kabinettEL.addEventListener('mouseover', () => {
+    calculateTotal()
+});
+
+prosessorEL.addEventListener('mouseover', () => {
+    calculateTotal()
+});
+
+prosessorKjølerEL.addEventListener('mouseover', () => {
+    calculateTotal()
+});
+
+minneEL.addEventListener('mouseover', () => {
+    calculateTotal()
+});
+
+lagringEL.addEventListener('mouseover', () => {
+    calculateTotal()
+});
+
+skjermkortEL.addEventListener('mouseover', () => {
+    calculateTotal()
+});
+
+strømforsyningEL.addEventListener('mouseover', () => {
+    calculateTotal()
+});
+
+function calculateTotal() {
+    let total = 0
+    const selectedPsu = parseFloat(strømforsyningEL.value)
+    const selectedGpu = parseFloat(skjermkortEL.value)
+    const selectedDisk = parseFloat(lagringEL.value)
+    const selectedMemory = parseFloat(minneEL.value)
+    const selectedCpuCooler = parseFloat(prosessorKjølerEL.value)
+    const selectedCpu = parseFloat(prosessorEL.value)
+    const selectedCase = parseFloat(kabinettEL.value)
+    const selectedMotherboard = parseFloat(hovedkortEL.value)
+    console.log(selectedMotherboard, selectedCase, selectedCpu, selectedCpuCooler, selectedMemory, selectedDisk, selectedGpu, selectedPsu)
+    total = selectedPsu + selectedGpu + selectedDisk + selectedMemory + selectedCpuCooler + selectedCpu + selectedCase + selectedMotherboard
+    total = Math.round(total)
+    const footer = document.querySelector('footer');
+    footer.innerHTML = `Total pris ${total} kr`;
+}

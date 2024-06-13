@@ -36,6 +36,8 @@ async function start() {
     } 
     let totalElement = document.createElement("p");
     totalElement.innerHTML = `Totalt: ${total} kr`;
+    totalElement.style.color = "green";
+    totalElement.style.fontSize = "50px";
     let mains = document.getElementById("mains");
     mains.appendChild(totalElement);
 }

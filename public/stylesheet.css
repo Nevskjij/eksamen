@@ -104,7 +104,7 @@ button {
 }
 #mains {
     margin: auto;
-    width: 40%;
+    width: 50%;
     display: grid;
     margin-left: 35%;
     grid-template-columns: repeat(2, 1fr);

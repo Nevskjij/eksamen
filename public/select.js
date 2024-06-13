@@ -11,27 +11,30 @@ async function kurs(price) {
 }
 
 async function fetchComponents(componentType) {
-    const response = await fetch(`/${componentType}`);
-    return response.json();
+    const response = await fetch(`/${componentType}`); // Gjør en nettverksforespørsel med komponenttypen som parameter
+    return response.json(); // Returnerer responsen i JSON-format
 }
 
 function getQueryParam(param) {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get(param);
+    const urlParams = new URLSearchParams(window.location.search); // Henter URL-parametre
+    return urlParams.get(param); // Returnerer verdien til den spesifiserte parameteren
 }
 
 function selectComponent(componentType, component) {
-    window.opener.saveSelection(componentType, component);
-    window.close();
+    window.opener.saveSelection(componentType, component); // Lagrer valgt komponent via en funksjon på forelder-vinduet
+    window.close(); // Lukker gjeldende vindu
 }
 
 async function createComponentCard(component, componentType) {
-    const card = document.createElement('div');
-    card.className = 'component-card';
+    const card = document.createElement('div'); // Oppretter en ny <div> for å vise komponenten
+    card.className = 'component-card'; // Legger til CSS-klasse for stilisering
 
-    const convertedPrice = await kurs(component.price);
+    const convertedPrice = await kurs(component.price); // Konverterer prisen til NOK
 
+     // Basert på komponenttypen, oppretter HTML-innholdet for komponentkortet
     switch (componentType) {
+        // Hver case inneholder spesifikk HTML-struktur basert på komponenttypen
+        // Her vises komponentnavn, pris, og spesifikke egenskaper for hver type komponent
         case 'hovedkort':
             card.innerHTML = `
                 <div class="component-name">${component.name}</div>
@@ -237,110 +240,112 @@ async function createComponentCard(component, componentType) {
             break;
     }
 
-    card.onclick = () => selectComponent(componentType, component);
-    return card;
+    card.onclick = () => selectComponent(componentType, component); // Legger til klikkfunksjon for å velge komponenten
+    return card; // Returnerer det opprettede komponentkortet
 }
 
 async function showComponents() {
-    const componentType = getQueryParam('component');
+    const componentType = getQueryParam('component'); // Henter komponenttypen fra URL-parameteren
+
+    // Henter komponenter basert på komponenttypen fra serveren
     const components = await fetchComponents(componentType);
 
+     // Utfører filtrering basert på spesifikke kriterier avhengig av komponenttypen
     if (componentType === 'cpu') {
+        // Filtrer ut CPU-er basert på hovedkortets socket-type eller CPU-merke
         const motherboardSocket = localStorage.getItem('motherboardSocket');
         if (motherboardSocket === "AM5" || motherboardSocket === "AM4" || motherboardSocket === "AM3" || motherboardSocket === "AM2" || motherboardSocket === "AM1") {
-            // Use a while loop to properly iterate and remove elements
+            // Bruker en while løkke for å gå gjennom alle komponentene og fjerne de som ikke møter kravet
             let i = 0;
             while (i < components.length) {
                 if (components[i].name.includes("Intel") || components[i].name.includes("Core")) {
                     components.splice(i, 1);
                 } else {
-                    i++; // Move to the next element only if no removal occurred
+                    i++; // Forsetter til neste i kø dersom ingen fjerning skjedde
                 }
             }
-            console.log(components);
+
         } else if (motherboardSocket === "LGA1700" || motherboardSocket === "LGA1200" || motherboardSocket === "LGA1151" || motherboardSocket === "LGA1150" || motherboardSocket === "LGA1155" || motherboardSocket === "LGA1156") {
-            // Use a while loop to properly iterate and remove elements
+            // Bruker en while løkke for å gå gjennom alle komponentene og fjerne de som ikke møter kravet
             let i = 0;
             while (i < components.length) {
                 if (components[i].name.includes("AMD") || components[i].name.includes("Ryzen")) {
                     components.splice(i, 1);
                 } else {
-                    i++; // Move to the next element only if no removal occurred
+                    i++; // Forsetter til neste i kø dersom ingen fjerning skjedde
                 }
             }
-            console.log(components);
+
         }
     } else if (componentType === 'hovedkort') { 
+        // Filtrer ut hovedkort basert på CPU-merke og kabinettformfaktor
         const cpuBrand = localStorage.getItem('cpuBrand');
         console.log(cpuBrand);
         const caseform = localStorage.getItem('case');
         const slots = localStorage.getItem('motherboardSlots');
         if (cpuBrand === "Intel") {
-            // Use a while loop to properly iterate and remove elements
+            // Bruker en while løkke for å gå gjennom alle komponentene og fjerne de som ikke møter kravet
             let i = 0;
             while (i < components.length) {
                 if (components[i].socket !== "LGA1700" && components[i].socket !== "LGA1200" && components[i].socket !== "LGA1151" && components[i].socket !== "LGA1150" && components[i].socket !== "LGA1155" && components[i].socket !== "LGA1156") {
                     components.splice(i, 1);
                 } else {
-                    i++; // Move to the next element only if no removal occurred
+                    i++; // Forsetter til neste i kø dersom ingen fjerning skjedde
                 }
             }
-            console.log(components);
+
         } else if (cpuBrand === "AMD") {
-            // Use a while loop to properly iterate and remove elements
+            // Bruker en while løkke for å gå gjennom alle komponentene og fjerne de som ikke møter kravet
             let i = 0;
             while (i < components.length) {
                 if (components[i].socket !== "AM5" && components[i].socket !== "AM4" && components[i].socket !== "AM3" && components[i].socket !== "AM2" && components[i].socket !== "AM1") {
                     components.splice(i, 1);
                 } else {
-                    i++; // Move to the next element only if no removal occurred
+                    i++; // Forsetter til neste i kø dersom ingen fjerning skjedde
                 }
             }
-            //console.log(components);
         } if (caseform === "ATX") {
-            // Use a while loop to properly iterate and remove elements
+            // Bruker en while løkke for å gå gjennom alle komponentene og fjerne de som ikke møter kravet
             let i = 0;
             while (i < components.length) {
                 if (components[i].form_factor !== "ATX") {
                     components.splice(i, 1);
                 } else {
-                    i++; // Move to the next element only if no removal occurred
+                    i++; // Forsetter til neste i kø dersom ingen fjerning skjedde
                 }
             }
-            console.log(components);
         } else if (caseform === "MicroATX") { 
-            // Use a while loop to properly iterate and remove elements
+            // Bruker en while løkke for å gå gjennom alle komponentene og fjerne de som ikke møter kravet
             let i = 0;
             while (i < components.length) {
                 if (components[i].form_factor !== "Micro ATX") {
                     components.splice(i, 1);
                 } else {
-                    i++; // Move to the next element only if no removal occurred
+                    i++; // Forsetter til neste i kø dersom ingen fjerning skjedde
                 }
             }
-            console.log(components);
         } else if (caseform === "Mini ITX") {
-            // Use a while loop to properly iterate and remove elements
+            // Bruker en while løkke for å gå gjennom alle komponentene og fjerne de som ikke møter kravet
             let i = 0;
             while (i < components.length) {
                 if (components[i].form_factor !== "Mini ITX") {
                     components.splice(i, 1);
                 } else {
-                    i++; // Move to the next element only if no removal occurred
+                    i++; // Forsetter til neste i kø dersom ingen fjerning skjedde
                 }
             }
-            console.log(components);
         }
     } else if (componentType === 'case') {
+        // Filtrer ut kabinetter basert på hovedkortets formfaktor
         const motherboardFormFactor = localStorage.getItem('motherboardFormFactor');
-        // Use a while loop to properly iterate and remove elements
+        // Bruker en while løkke for å gå gjennom alle komponentene og fjerne de som ikke møter kravet
         let i = 0;
         if (motherboardFormFactor === "ATX") {
         while (i < components.length) {
             if (components[i].type.includes("Mini ITX") || components[i].type.includes("MicroATX")) {
                 components.splice(i, 1);
             } else {
-                i++; // Move to the next element only if no removal occurred
+                i++; // Forsetter til neste i kø dersom ingen fjerning skjedde
             }
         }
         console.log(components);
@@ -349,7 +354,7 @@ async function showComponents() {
             if (components[i].type.startsWith("ATX") || components[i].type.includes("Mini ITX")) {
                 components.splice(i, 1);
             } else {
-                i++; // Move to the next element only if no removal occurred
+                i++; // Forsetter til neste i kø dersom ingen fjerning skjedde
             }
         }
         console.log(components);
@@ -358,51 +363,55 @@ async function showComponents() {
             if (components[i].type.startsWith("ATX") || components[i].type.includes("MicroATX")) {
                 components.splice(i, 1);
             } else {
-                i++; // Move to the next element only if no removal occurred
+                i++; // Forsetter til neste i kø dersom ingen fjerning skjedde
             }
         }
         console.log(components);
     }
 } else if (componentType === 'memory') {
+    // Filtrer ut minne basert på antall minnespor på hovedkortet
     const motherboardSlots = parseInt(localStorage.getItem('motherboardSlots'));
     if (motherboardSlots === 2) {
-        // Use a while loop to properly iterate and remove elements
+        // Bruker en while løkke for å gå gjennom alle komponentene og fjerne de som ikke møter kravet
         let i = 0;
         while (i < components.length) {
             if (components[i].modules[0] > 2) {
                 components.splice(i, 1);
             } else {
-                i++; // Move to the next element only if no removal occurred
+                i++; // Forsetter til neste i kø dersom ingen fjerning skjedde
             }
         }
     } else if (motherboardSlots === 4) {
-        // Use a while loop to properly iterate and remove elements
+        // Bruker en while løkke for å gå gjennom alle komponentene og fjerne de som ikke møter kravet
         let i = 0;
         while (i < components.length) {
             if (components[i].modules[0] > 4) {
                 components.splice(i, 1);
             } else {
-                i++; // Move to the next element only if no removal occurred
+                i++; // Forsetter til neste i kø dersom ingen fjerning skjedde
             }
         }
     }
 } else if (componentType === 'psu') {
+    // Filtrer ut strømforsyninger basert på dersom det er et dedikert skjermkort
     const gpuexist = localStorage.getItem('gpu');
     if (gpuexist != undefined) {
-        // Use a while loop to properly iterate and remove elements
+        // Bruker en while løkke for å gå gjennom alle komponentene og fjerne de som ikke møter kravet
         let i = 0;
         while (i < components.length) {
             if (components[i].wattage < 500) {
                 components.splice(i, 1);
             } else {
-                i++; // Move to the next element only if no removal occurred
+                i++; // Forsetter til neste i kø dersom ingen fjerning skjedde
             }
         }
     }
 }
 
 const componentGrid = document.getElementById('componentGrid');
-componentGrid.innerHTML = ''; // Clear any existing components
+componentGrid.innerHTML = ''; // Tømmer innholdet i komponentgridet
+
+// Oppretter og legger til komponentkort for hvert filtrert komponent i komponentruten
     for (const component of components) {
         const card = await createComponentCard(component, componentType);
         componentGrid.appendChild(card);
@@ -410,5 +419,5 @@ componentGrid.innerHTML = ''; // Clear any existing components
 }
 
 
-// Show components when the page loads
+// Laster inn komponenter når siden lastes
 window.onload = showComponents;

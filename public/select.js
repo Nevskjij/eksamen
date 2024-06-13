@@ -119,7 +119,7 @@ async function showComponents() {
     console.log(components);
 
     if (componentType === 'cpu') {
-        const motherboardSocket = localStorage.getItem('motherboardSocket').socket;
+        const motherboardSocket = localStorage.getItem('motherboardSocket');
         if (motherboardSocket === "AM5" || motherboardSocket === "AM4" || motherboardSocket === "AM3" || motherboardSocket === "AM2" || motherboardSocket === "AM1") {
             // Use a while loop to properly iterate and remove elements
             let i = 0;
@@ -236,7 +236,7 @@ async function showComponents() {
         console.log(components);
     }
 } else if (componentType === 'memory') {
-    const motherboardSlots = localStorage.getItem('motherboardSlots');
+    const motherboardSlots = parseInt(localStorage.getItem('motherboardSlots'));
     if (motherboardSlots === 2) {
         // Use a while loop to properly iterate and remove elements
         let i = 0;
@@ -247,17 +247,34 @@ async function showComponents() {
                 i++; // Move to the next element only if no removal occurred
             }
         }
-        console.log(components);
+    } else if (motherboardSlots === 4) {
+        // Use a while loop to properly iterate and remove elements
+        let i = 0;
+        while (i < components.length) {
+            if (components[i].modules[0] > 4) {
+                components.splice(i, 1);
+            } else {
+                i++; // Move to the next element only if no removal occurred
+            }
+        }
+    }
+} else if (componentType === 'psu') {
+    const gpuexist = localStorage.getItem('gpu');
+    if (gpuexist != undefined) {
+        // Use a while loop to properly iterate and remove elements
+        let i = 0;
+        while (i < components.length) {
+            if (components[i].wattage < 500) {
+                components.splice(i, 1);
+            } else {
+                i++; // Move to the next element only if no removal occurred
+            }
+        }
     }
 }
 
-
-
-
-
-
-    const componentGrid = document.getElementById('componentGrid');
-    componentGrid.innerHTML = ''; // Clear any existing components
+const componentGrid = document.getElementById('componentGrid');
+componentGrid.innerHTML = ''; // Clear any existing components
     for (const component of components) {
         const card = await createComponentCard(component, componentType);
         componentGrid.appendChild(card);

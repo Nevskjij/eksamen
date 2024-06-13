@@ -19,7 +19,7 @@
                 <p>Prosessor</p>
                 <button class="product" id="cpu" onclick="selectComponent('cpu')">Legg til Prosessor</button>
                 <button class="fjern" onclick="fjern('cpu')">Fjern</button>
-                <p>Prosessor Kjøler</p>
+                <p>Kjøler</p>
                 <button class="product" id="CpuCooler" onclick="selectComponent('CpuCooler')">Legg til Prosessor Kjøler</button>
                 <button class="fjern" onclick="fjern('CpuCooler')">Fjern</button>
                 <p>Minne</p>
@@ -36,6 +36,7 @@
                 <button class="fjern" onclick="fjern('psu')">Fjern</button>
             </div>
         <div id="sidebar">
+            <button id="export" onclick="window.open('/kasse.html')">Kasse</button>
             <button id="export" onclick="exporter();">Eksporter</button>
             <small id="melding" style="color:red"></small>
         </div>

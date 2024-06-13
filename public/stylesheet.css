@@ -23,7 +23,7 @@ main {
 }
 .hoved {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -87,4 +87,18 @@ button {
     cursor: pointer;
     height: 45px;
     width: 100%;
+}
+
+.fjern {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 50px;
+    color: red;
+    background-color: #333;
+    width: 35%;
+}
+.product {
+    margin-left: 30px;
+    margin-right: 30px;
 }

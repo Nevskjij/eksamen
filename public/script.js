@@ -67,7 +67,6 @@ function saveSelection(componentType, component) {
 window.onload = loadSelections;
 
 const bodyEL = document.querySelector('body');
-
 bodyEL.addEventListener('mouseover', () => {
     calculateTotal();
 });
@@ -99,6 +98,48 @@ function calculateTotal() {
 }
 calculateTotal()
 
-function exporter() { 
-    console.log(123)
+function fjern(key) {
+    localStorage.removeItem(key)
+    location.reload();
+}
+
+async function exporter() {
+    const componentTypes = [
+        'hovedkort', 'case', 'cpu', 'CpuCooler', 'memory', 'disk', 'gpu', 'psu', 'caseAccessory', 'caseFan', 'externalHardDrive', 'fanController', 'headphones', 'keyboard', 'monitor', 'mouse', 'opticalDrive', 'os', 'soundCard', 'speakers', 'webcam', 'wiredNetworkCard', 'wirelessNetworkCard'
+    ];
+
+    const componentArray = [];
+    
+    // Fetch conversion rate once
+    const response = await fetch('/kurs');
+    const data = await response.json();
+    const conversionRate = data.data.NOK.value;
+
+    // Update each component's price with the conversion rate
+    for (const type of componentTypes) {
+        const savedComponent = JSON.parse(localStorage.getItem(type));
+        if (savedComponent) {
+            savedComponent.price = Math.round(conversionRate * savedComponent.price);
+            componentArray.push(savedComponent);
+        }
+    }
+
+    console.log(componentArray);
+
+    // Convert the array to JSON and create a Blob
+    const jsonString = JSON.stringify(componentArray, null, 2);
+    const blob = new Blob([jsonString], { type: "application/json" });
+
+    // Create a download link and trigger the download
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "export.json";
+
+    document.body.appendChild(a);
+    a.click();
+
+    // Clean up
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
 }

@@ -11,21 +11,29 @@
         <h1>Hovedkomponenter</h1>
             <div class="hoved">
                 <p>Hovedkort</p>
-                <button id="hovedkort" onclick="selectComponent('hovedkort')">Legg til Hovedkort</button>
+                <button class="product" id="hovedkort" onclick="selectComponent('hovedkort')">Legg til Hovedkort</button>
+                <button class="fjern" onclick="fjern('hovedkort')">Fjern</button>
                 <p>Kabinett</p>
-                <button id="case" onclick="selectComponent('case')">Legg til Kabinett</button>
+                <button class="product" id="case" onclick="selectComponent('case')">Legg til Kabinett</button>
+                <button class="fjern" onclick="fjern('case')">Fjern</button>
                 <p>Prosessor</p>
-                <button id="cpu" onclick="selectComponent('cpu')">Legg til Prosessor</button>
+                <button class="product" id="cpu" onclick="selectComponent('cpu')">Legg til Prosessor</button>
+                <button class="fjern" onclick="fjern('cpu')">Fjern</button>
                 <p>Prosessor Kjøler</p>
-                <button id="CpuCooler" onclick="selectComponent('CpuCooler')">Legg til Prosessor Kjøler</button>
+                <button class="product" id="CpuCooler" onclick="selectComponent('CpuCooler')">Legg til Prosessor Kjøler</button>
+                <button class="fjern" onclick="fjern('CpuCooler')">Fjern</button>
                 <p>Minne</p>
-                <button id="memory" onclick="selectComponent('memory')">Legg til Minne</button>
+                <button class="product" id="memory" onclick="selectComponent('memory')">Legg til Minne</button>
+                <button class="fjern" onclick="fjern('memory')">Fjern</button>
                 <p>Lagring</p>
-                <button id="disk" onclick="selectComponent('disk')">Legg til Lagring</button>
+                <button class="product" id="disk" onclick="selectComponent('disk')">Legg til Lagring</button>
+                <button class="fjern" onclick="fjern('disk')">Fjern</button>
                 <p>Skjermkort</p>
-                <button id="gpu" onclick="selectComponent('gpu')">Legg til Skjermkort</button>
+                <button class="product" id="gpu" onclick="selectComponent('gpu')">Legg til Skjermkort</button>
+                <button class="fjern" onclick="fjern('gpu')">Fjern</button>
                 <p>Strømforsyning</p>
-                <button id="psu" onclick="selectComponent('psu')">Legg til Strømforsyning</button>
+                <button class="product" id="psu" onclick="selectComponent('psu')">Legg til Strømforsyning</button>
+                <button class="fjern" onclick="fjern('psu')">Fjern</button>
             </div>
         <div id="sidebar">
             <button id="export" onclick="exporter();">Eksporter</button>
@@ -33,36 +41,48 @@
         </div>
         <h2>Ekstra komponenter</h2>
             <div class="hoved">
-                <p>Tilbehør</p>
-                <button id="caseAccessory" onclick="selectComponent('caseAccessory')">Legg til tilbehør</button>
                 <p>Case Fan</p>
-                <button id="caseFan" onclick="selectComponent('caseFan')">Legg til vifter</button>
+                <button class="product" id="caseFan" onclick="selectComponent('caseFan')">Legg til vifter</button>
+                <button class="fjern" onclick="fjern('caseFan')">Fjern</button>
                 <p>Eksterne Disker</p>
-                <button id="externalHardDrive" onclick="selectComponent('externalHardDrive')">Legg til eksterne disker</button>
+                <button class="product" id="externalHardDrive" onclick="selectComponent('externalHardDrive')">Legg til eksterne disker</button>
+                <button class="fjern" onclick="fjern('externalHardDrive')">Fjern</button>
                 <p>Vifte Kontroller</p>
-                <button id="fanController" onclick="selectComponent('fanController')">Legg til vifte kontroller</button>
+                <button class="product" id="fanController" onclick="selectComponent('fanController')">Legg til vifte kontroller</button>
+                <button class="fjern" onclick="fjern('fanController')">Fjern</button>
                 <p>Hodetelefoner</p>
-                <button id="headphones" onclick="selectComponent('headphones')">Legg til hodetelefoner</button>
+                <button class="product" id="headphones" onclick="selectComponent('headphones')">Legg til hodetelefoner</button>
+                <button class="fjern" onclick="fjern('headphones')">Fjern</button>
                 <p>Tastatur</p>
-                <button id="keyboard" onclick="selectComponent('keyboard')">Legg til tastatur</button>
+                <button class="product" id="keyboard" onclick="selectComponent('keyboard')">Legg til tastatur</button>
+                <button class="fjern" onclick="fjern('keyboard')">Fjern</button>
                 <p>Monitor</p>
-                <button id="monitor" onclick="selectComponent('monitor')">Legg til monitor</button>
+                <button class="product" id="monitor" onclick="selectComponent('monitor')">Legg til monitor</button>
+                <button class="fjern" onclick="fjern('monitor')">Fjern</button>
                 <p>Mus</p>
-                <button id="mouse" onclick="selectComponent('mouse')">Legg til mus</button>
+                <button class="product" id="mouse" onclick="selectComponent('mouse')">Legg til mus</button>
+                <button class="fjern" onclick="fjern('mouse')">Fjern</button>
                 <p>Optisk Stasjon</p>
-                <button id="opticalDrive" onclick="selectComponent('opticalDrive')">Legg til optisk stasjon</button>
+                <button class="product" id="opticalDrive" onclick="selectComponent('opticalDrive')">Legg til optisk stasjon</button>
+                <button class="fjern" onclick="fjern('opticalDrive')">Fjern</button>
                 <p>Operativsystem</p>
-                <button id="os" onclick="selectComponent('os')">Legg til operativsystem</button>
+                <button class="product" id="os" onclick="selectComponent('os')">Legg til operativsystem</button>
+                <button class="fjern" onclick="fjern('os')">Fjern</button>
                 <p>Lydkort</p>
-                <button id="soundCard" onclick="selectComponent('soundCard')">Legg til lydkort</button>
+                <button class="product" id="soundCard" onclick="selectComponent('soundCard')">Legg til lydkort</button>
+                <button class="fjern" onclick="fjern('soundCard')">Fjern</button>
                 <p>Høytalere</p>
-                <button id="speakers" onclick="selectComponent('speakers')">Legg til høytalere</button>
+                <button class="product" id="speakers" onclick="selectComponent('speakers')">Legg til høytalere</button>
+                <button class="fjern" onclick="fjern('speakers')">Fjern</button>
                 <p>Webkamera</p>
-                <button id="webcam" onclick="selectComponent('webcam')">Legg til webkamera</button>
+                <button class="product" id="webcam" onclick="selectComponent('webcam')">Legg til webkamera</button>
+                <button class="fjern" onclick="fjern('webcam')">Fjern</button>
                 <p>Nettverkskort</p>
-                <button id="wiredNetworkCard" onclick="selectComponent('wiredNetworkCard')">Legg til nettverkskort</button>
+                <button class="product" id="wiredNetworkCard" onclick="selectComponent('wiredNetworkCard')">Legg til nettverkskort</button>
+                <button class="fjern" onclick="fjern('wiredNetworkCard')">Fjern</button>
                 <p>Nettverkskort</p>
-                <button id="wirelessNetworkCard" onclick="selectComponent('wirelessNetworkCard')">Legg til trådløs nettverkskort</button>
+                <button class="product" id="wirelessNetworkCard" onclick="selectComponent('wirelessNetworkCard')">Legg til trådløs nettverkskort</button>
+                <button class="fjern" onclick="fjern('wirelessNetworkCard')">Fjern</button>
             </div>
     </main>
     <footer></footer>

@@ -119,7 +119,7 @@ async function showComponents() {
     console.log(components);
 
     if (componentType === 'cpu') {
-        const motherboardSocket = localStorage.getItem('motherboardSocket');
+        const motherboardSocket = localStorage.getItem('motherboardSocket').socket;
         if (motherboardSocket === "AM5" || motherboardSocket === "AM4" || motherboardSocket === "AM3" || motherboardSocket === "AM2" || motherboardSocket === "AM1") {
             // Use a while loop to properly iterate and remove elements
             let i = 0;
@@ -131,12 +131,103 @@ async function showComponents() {
                 }
             }
             console.log(components);
+        } else if (motherboardSocket === "LGA1700" || motherboardSocket === "LGA1200" || motherboardSocket === "LGA1151" || motherboardSocket === "LGA1150" || motherboardSocket === "LGA1155" || motherboardSocket === "LGA1156") {
+            // Use a while loop to properly iterate and remove elements
+            let i = 0;
+            while (i < components.length) {
+                if (components[i].name.includes("AMD") || components[i].name.includes("Ryzen")) {
+                    components.splice(i, 1);
+                } else {
+                    i++; // Move to the next element only if no removal occurred
+                }
+            }
+            console.log(components);
         }
-    } else if (motherboardSocket === "LGA1700" || motherboardSocket === "LGA1200" || motherboardSocket === "LGA1151" || motherboardSocket === "LGA1150" || motherboardSocket === "LGA1155" || motherboardSocket === "LGA1156") {
+    } else if (componentType === 'hovedkort') { 
+        const cpubrand = localStorage.getItem('cpubrand');
+        const caseform = localStorage.getItem('case');
+        const slots = localStorage.getItem('motherboardSlots');
+        if (cpubrand === "Intel") {
+            // Use a while loop to properly iterate and remove elements
+            let i = 0;
+            while (i < components.length) {
+                if (components[i].socket !== "LGA1700" && components[i].socket !== "LGA1200" && components[i].socket !== "LGA1151" && components[i].socket !== "LGA1150" && components[i].socket !== "LGA1155" && components[i].socket !== "LGA1156") {
+                    components.splice(i, 1);
+                } else {
+                    i++; // Move to the next element only if no removal occurred
+                }
+            }
+            console.log(components);
+        } else if (cpubrand === "AMD") {
+            // Use a while loop to properly iterate and remove elements
+            let i = 0;
+            while (i < components.length) {
+                if (components[i].socket !== "AM5" && components[i].socket !== "AM4" && components[i].socket !== "AM3" && components[i].socket !== "AM2" && components[i].socket !== "AM1") {
+                    components.splice(i, 1);
+                } else {
+                    i++; // Move to the next element only if no removal occurred
+                }
+            }
+            //console.log(components);
+        } if (caseform === "ATX") {
+            // Use a while loop to properly iterate and remove elements
+            let i = 0;
+            while (i < components.length) {
+                if (components[i].form_factor !== "ATX") {
+                    components.splice(i, 1);
+                } else {
+                    i++; // Move to the next element only if no removal occurred
+                }
+            }
+            console.log(components);
+        } else if (caseform === "MicroATX") { 
+            // Use a while loop to properly iterate and remove elements
+            let i = 0;
+            while (i < components.length) {
+                if (components[i].form_factor !== "Micro ATX") {
+                    components.splice(i, 1);
+                } else {
+                    i++; // Move to the next element only if no removal occurred
+                }
+            }
+            console.log(components);
+        } else if (caseform === "Mini ITX") {
+            // Use a while loop to properly iterate and remove elements
+            let i = 0;
+            while (i < components.length) {
+                if (components[i].form_factor !== "Mini ITX") {
+                    components.splice(i, 1);
+                } else {
+                    i++; // Move to the next element only if no removal occurred
+                }
+            }
+            console.log(components);
+        }
+    } else if (componentType === 'case') {
+        const motherboardFormFactor = localStorage.getItem('motherboardFormFactor');
         // Use a while loop to properly iterate and remove elements
         let i = 0;
+        if (motherboardFormFactor === "ATX") {
         while (i < components.length) {
-            if (components[i].name.includes("AMD") || components[i].name.includes("Ryzen")) {
+            if (components[i].type.includes("Mini ITX") || components[i].type.includes("MicroATX")) {
+                components.splice(i, 1);
+            } else {
+                i++; // Move to the next element only if no removal occurred
+            }
+        }
+        console.log(components);
+    } else if (motherboardFormFactor === "Micro ATX") {
+        while (i < components.length) {
+            if (components[i].type.startsWith("ATX") || components[i].type.includes("Mini ITX")) {
+                components.splice(i, 1);
+            } else {
+                i++; // Move to the next element only if no removal occurred
+            }
+        }
+        console.log(components);
+    } else if (motherboardFormFactor === "Mini ITX") {
+        while (i < components.length) {
+            if (components[i].type.startsWith("ATX") || components[i].type.includes("MicroATX")) {
                 components.splice(i, 1);
             } else {
                 i++; // Move to the next element only if no removal occurred
@@ -144,7 +235,26 @@ async function showComponents() {
         }
         console.log(components);
     }
-    
+} else if (componentType === 'memory') {
+    const motherboardSlots = localStorage.getItem('motherboardSlots');
+    if (motherboardSlots === 2) {
+        // Use a while loop to properly iterate and remove elements
+        let i = 0;
+        while (i < components.length) {
+            if (components[i].modules[0] > 2) {
+                components.splice(i, 1);
+            } else {
+                i++; // Move to the next element only if no removal occurred
+            }
+        }
+        console.log(components);
+    }
+}
+
+
+
+
+
 
     const componentGrid = document.getElementById('componentGrid');
     componentGrid.innerHTML = ''; // Clear any existing components

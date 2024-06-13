@@ -31,7 +31,7 @@ const Case = require("./json/case.json");
 app.get("/case", (req, res) => {
     const fliteredC = Case.filter(g => g.price !== null);
     res.json(fliteredC);
-    res.json(Case);
+    //res.json(Case);
 });
 
 const cpu = require("./json/cpu.json");

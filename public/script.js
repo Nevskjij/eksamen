@@ -5,6 +5,7 @@ async function kurs(price) {
     let convertedPrice = Math.round(conversionRate * price);
     return convertedPrice;
 }
+
 // Function to handle component selection
 function selectComponent(componentType) {
     console.log(componentType);
@@ -42,15 +43,29 @@ function saveSelection(componentType, component) {
 
     if (componentType === 'hovedkort') {
         localStorage.setItem('motherboardSocket', component.socket);
+        localStorage.setItem('motherboardFormFactor', component.form_factor);
+        localStorage.setItem('motherboardSlots', component.memory_slots);
+    }
+    if (componentType === 'cpu') {
+        const cpuBrand = component.name.includes("Intel") ? "Intel" : "AMD";
+        localStorage.setItem('cpuBrand', cpuBrand);
+    }
+    if (componentType === 'case') {
+        if (component.type.startsWith("ATX")) {
+            localStorage.setItem('caseType', "ATX");
+        } else if (component.type.includes("MicroATX")) {
+            localStorage.setItem('caseType', "MicroATX");
+        } else if (component.type.includes("Mini-ITX")) {
+            localStorage.setItem('caseType', "Mini-ITX");
+        }
+    }
+    if (componentType === 'memory') {
+        localStorage.setItem('memorySlots', component.modules[0]);
     }
 }
 
-
 // Load selections when the page loads
 window.onload = loadSelections;
-
-// Calculate total price function (not shown in your provided code)
-// Ensure it correctly calculates and updates the total price display
 
 const bodyEL = document.querySelector('body');
 
@@ -59,32 +74,22 @@ bodyEL.addEventListener('mouseover', () => {
 });
 
 function calculateTotal() {
-    let total = 0;
-    const selectedPsu = parseFloat(document.getElementById('psu').value);
-    const selectedGpu = parseFloat(document.getElementById('gpu').value);
-    const selectedDisk = parseFloat(document.getElementById('disk').value);
-    const selectedMemory = parseFloat(document.getElementById('memory').value);
-    const selectedCpuCooler = parseFloat(document.getElementById('CpuCooler').value);
-    const selectedCpu = parseFloat(document.getElementById('cpu').value);
-    const selectedCase = parseFloat(document.getElementById('case').value);
-    const selectedMotherboard = parseFloat(document.getElementById('hovedkort').value);
+    const componentTypes = [
+        'hovedkort', 'case', 'cpu', 'CpuCooler',
+        'memory', 'disk', 'gpu', 'psu'
+    ];
 
-    total = selectedPsu + selectedGpu + selectedDisk + selectedMemory + selectedCpuCooler + selectedCpu + selectedCase + selectedMotherboard;
+    let total = 0;
+
+    componentTypes.forEach(type => {
+        const element = document.getElementById(type);
+        if (element && element.value) {
+            total += parseFloat(element.value) || 0;
+        }
+    });
+
     total = Math.round(total);
-    
     const footer = document.querySelector('footer');
     footer.innerHTML = `Total pris ${total} kr`;
 }
-
-// Function to filter and display CPUs based on selected motherboard socket
-async function filterAndDisplayCPUs(socketType) {
-    const response = await fetch('/cpu');
-    const components = await response.json();
-    const filteredCPUs = components.filter(cpu => cpu.socket.startsWith(socketType));
-    const componentGrid = document.getElementById('componentGrid');
-    componentGrid.innerHTML = ''; // Clear existing CPU components
-    filteredCPUs.forEach(cpu => {
-        const card = createComponentCard(cpu, 'cpu');
-        componentGrid.appendChild(card);
-    });
-}
+calculateTotal()

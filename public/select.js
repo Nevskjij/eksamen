@@ -215,6 +215,7 @@ async function createComponentCard(component, componentType) {
                 <div class="component-antall">Antall: ${component.configuration}</div>
                 <div class="component-watt">Frekvens: ${component.frequency_response} Hz</div>
             `;
+            break;
         case 'webcam':
             card.innerHTML = `
                 <div class="component-name">${component.name}</div>

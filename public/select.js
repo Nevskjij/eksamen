@@ -1,7 +1,11 @@
+// Denne funksjonen ser ut til å hente kursinformasjon fra /kurs og konvertere prisen basert på den hentede kursen. Her er kommentarer til hver linje:
 async function kurs(price) {
+    // Henter kursinformasjonen fra serveren
     const response = await fetch('/kurs');
     let data = await response.json();
+    // Henter konverteringsratens verdi fra responsen
     let conversionRate = data.data.NOK.value;
+    // Beregner den konverterte prisen og runder av til nærmeste heltall
     let convertedPrice = Math.round(conversionRate * price);
     return convertedPrice;
 }

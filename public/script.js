@@ -114,6 +114,10 @@ function calculateTotal() {
         const melding = document.getElementById('melding');
         melding.innerHTML = 'Du har ikke valgt en GPU eller CPU med integrert grafikk. Vennligst velg en av disse for å kunne fullføre byggingen.';
     }
+    else {
+        const melding = document.getElementById('melding');
+        melding.innerHTML = '';
+    }
 }
 calculateTotal()
 

@@ -62,7 +62,7 @@ async function createComponentCard(component, componentType) {
                 <div class="component-name">${component.name}</div>
                 <div class="component-price">${convertedPrice} kr</div>
                 <div class="component-type">RPM: ${component.rpm}</div>
-                <div class="component-color">Lydhøyde: ${component.noise_level} db</div>
+                <div class="component-color">Støy: ${component.noise_level} db</div>
                 <div class="component-side-panel">Farge: ${component.color}</div>
             `;
             break;
@@ -103,6 +103,129 @@ async function createComponentCard(component, componentType) {
                 <div class="component-type">Type: ${component.type}</div>
                 <div class="component-color">Effektivitet: ${component.efficiency}</div>
                 <div class="component-side-panel">Watt: ${component.wattage}</div>
+            `;
+            break;
+        case 'caseAccessory':
+            card.innerHTML = `
+                <div class="component-name">${component.name}</div>
+                <div class="component-price">${convertedPrice} kr</div>
+                <div class="component-type">Type: ${component.type}</div>
+                <div class="component-color">Form faktor: ${component.form_factor}</div>
+            `;
+            break;
+        case 'caseFan': 
+            card.innerHTML = `
+                <div class="component-name">${component.name}</div>
+                <div class="component-price">${convertedPrice} kr</div>
+                <div class="component-color">Størrelse: ${component.size}</div>
+                <div class="component-side-panel">RPM: ${component.rpm}</div>
+                <div class="component-color">Støy: ${component.noise_level} db</div>
+            `;
+            break;
+        case 'externalHardDrive':
+            card.innerHTML = `
+                <div class="component-name">${component.name}</div>
+                <div class="component-price">${convertedPrice} kr</div>
+                <div class="component-type">Type: ${component.type}</div>
+                <div class="component-color">Kapasitet: ${component.capacity} GB</div>
+                <div class="component-side-panel">Tilkobling: ${component.interface}</div>
+            `;
+            break;
+        case 'fanController':
+            card.innerHTML = `
+                <div class="component-name">${component.name}</div>
+                <div class="component-price">${convertedPrice} kr</div>
+                <div class="component-type">Porter: ${component.channels}</div>
+            `;
+            break;
+        case 'headphones':
+            card.innerHTML = `
+                <div class="component-name">${component.name}</div>
+                <div class="component-price">${convertedPrice} kr</div>
+                <div class="component-name">Mikrofon: ${component.microphone}</div>
+                <div class="component-name">Trådløst ${component.wireless}</div>
+                <div class="component-name">Farge: ${component.color}</div>
+            `;
+            break;
+        case 'keyboard':
+            card.innerHTML = `
+                <div class="component-name">${component.name}</div>
+                <div class="component-price">${convertedPrice} kr</div>
+                <div class="component-name">Type: ${component.style}</div>
+                <div class="component-name">Switches: ${component.switches}</div>
+                <div class="component-name">Tilkobling: ${component.connection_type}</div>
+            `;
+            break;
+        case 'monitor':
+            card.innerHTML = `
+                <div class="component-name">${component.name}</div>
+                <div class="component-price">${convertedPrice} kr</div>
+                <div class="component-name">Oppløsning: ${component.resolution}</div>
+                <div class="component-name">Størrelse: ${component.size} tommer</div>
+                <div class="component-name">Hertz: ${component.refresh_rate} hz</div>
+                <div class="component-name">Panel type: ${component.panel_type}</div>
+            `;
+            break;
+        case 'mouse':
+            card.innerHTML = `
+                <div class="component-name">${component.name}</div>
+                <div class="component-price">${convertedPrice} kr</div>
+                <div class="component-name">Tracking: ${component.tracking_method}</div>
+                <div class="component-name">Tilkobling: ${component.connection_type}</div>
+                <div class="component-name">Maks DPI: ${component.max_dpi}</div>
+                <div class="component-name">Hånd: ${component.hand_orientation}</div>
+            `;
+            break;
+        case 'opticalDrive':
+            card.innerHTML = `
+                <div class="component-name">${component.name}</div>
+                <div class="component-price">${convertedPrice} kr</div>
+                <div class="component-name">Dvd: ${component.dvd}</div>
+                <div class="component-name">Blu-ray: ${component.bd}</div>
+                <div class="component-name">CD: ${component.cd}</div>
+            `;  
+            break;
+        case 'os':
+            card.innerHTML = `
+                <div class="component-name">${component.name}</div>
+                <div class="component-price">${convertedPrice} kr</div>
+                <div class="component-bit">Bit: ${component.mode}</div>
+            `;
+            break;
+        case 'soundCard':
+            card.innerHTML = `
+                <div class="component-name">${component.name}</div>
+                <div class="component-price">${convertedPrice} kr</div>
+                <div class="component-kanal">Kanal: ${component.channels}</div>
+                <div class="component-prøvefrekvens">Prøvefrekvens: ${component.sample_rate}</div>
+                <div class="component-bit">Chip: ${component.chipset}</div>
+            `;
+            break;
+        case 'wirelessNetworkCard':
+            card.innerHTML = `
+                <div class="component-name">${component.name}</div>
+                <div class="component-price">${convertedPrice} kr</div>
+                <div class="component-type">Protokoll: ${component.protocol}</div>
+            `;
+            break;
+        case 'speakers':
+            card.innerHTML = `
+                <div class="component-name">${component.name}</div>
+                <div class="component-price">${convertedPrice} kr</div>
+                <div class="component-antall">Antall: ${component.configuration}</div>
+                <div class="component-watt">Frekvens: ${component.frequency_response} Hz</div>
+            `;
+        case 'webcam':
+            card.innerHTML = `
+                <div class="component-name">${component.name}</div>
+                <div class="component-price">${convertedPrice} kr</div>
+                <div class="component-name">Oppløsning: ${component.resolutions}</div>
+            `;
+            break;
+        case 'wiredNetworkCard':
+            card.innerHTML = `
+                <div class="component-name">${component.name}</div>
+                <div class="component-price">${convertedPrice} kr</div>
             `;
             break;
         default:

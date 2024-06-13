@@ -76,12 +76,105 @@ app.get("/psu", (req, res) => {
     //res.json(psu);
 });
 
+//Mindre viktige komponenter
 const hdd = require("./json/external-hard-drive.json");
+const caseAccessory = require("./json/case-accessory.json");
+const caseFan = require("./json/case-fan.json");
+const externalHardDrive = require("./json/external-hard-drive.json");
+const fanController = require("./json/fan-controller.json");
+const headphones = require("./json/headphones.json");
+const keyboard = require("./json/keyboard.json");
+const monitor = require("./json/monitor.json");
+const mouse = require("./json/mouse.json");
+const opticalDrive = require("./json/optical-drive.json");
+const os = require("./json/os.json");
+const soundCard = require("./json/sound-card.json");
+const speakers = require("./json/speakers.json");
+const webcam = require("./json/webcam.json");
+const wiredNetworkCard = require("./json/wired-network-card.json");
+const wirelessNetworkCard = require("./json/wireless-network-card.json");
+
 app.get("/edisk", (req, res) => {
     const filteredhdd = hdd.filter(g => g.price !== null);
     res.json(filteredhdd);
     //res.json(hdd);
 });
+app.get("/caseAccessory", (req, res) => {
+    const filteredCaseAccessory = caseAccessory.filter(g => g.price !== null);
+    res.json(filteredCaseAccessory);
+});
+
+app.get("/caseFan", (req, res) => {
+    const filteredCaseFan = caseFan.filter(g => g.price !== null);
+    res.json(filteredCaseFan);
+});
+
+app.get("/externalHardDrive", (req, res) => {
+    const filteredExternalHardDrive = externalHardDrive.filter(g => g.price !== null);
+    res.json(filteredExternalHardDrive);
+});
+
+app.get("/fanController", (req, res) => {
+    const filteredFanController = fanController.filter(g => g.price !== null);
+    res.json(filteredFanController);
+});
+
+app.get("/headphones", (req, res) => {
+    const filteredHeadphones = headphones.filter(g => g.price !== null);
+    res.json(filteredHeadphones);
+});
+
+app.get("/keyboard", (req, res) => {
+    const filteredKeyboard = keyboard.filter(g => g.price !== null);
+    res.json(filteredKeyboard);
+});
+
+app.get("/monitor", (req, res) => {
+    const filteredMonitor = monitor.filter(g => g.price !== null);
+    res.json(filteredMonitor);
+});
+
+app.get("/mouse", (req, res) => {
+    const filteredMouse = mouse.filter(g => g.price !== null);
+    res.json(filteredMouse);
+});
+
+app.get("/opticalDrive", (req, res) => {
+    const filteredOpticalDrive = opticalDrive.filter(g => g.price !== null);
+    res.json(filteredOpticalDrive);
+});
+
+app.get("/os", (req, res) => {
+    const filteredOs = os.filter(g => g.price !== null);
+    res.json(filteredOs);
+});
+
+app.get("/soundCard", (req, res) => {
+    const filteredSoundCard = soundCard.filter(g => g.price !== null);
+    res.json(filteredSoundCard);
+});
+
+app.get("/speakers", (req, res) => {
+    const filteredSpeakers = speakers.filter(g => g.price !== null);
+    res.json(filteredSpeakers);
+});
+
+app.get("/webcam", (req, res) => {
+    const filteredWebcam = webcam.filter(g => g.price !== null);
+    res.json(filteredWebcam);
+});
+
+app.get("/wiredNetworkCard", (req, res) => {
+    const filteredWiredNetworkCard = wiredNetworkCard.filter(g => g.price !== null);
+    res.json(filteredWiredNetworkCard);
+});
+
+app.get("/wirelessNetworkCard", (req, res) => {
+    const filteredWirelessNetworkCard = wirelessNetworkCard.filter(g => g.price !== null);
+    res.json(filteredWirelessNetworkCard);
+});
+
+
 
 app.listen(3000, () => {
     console.log("Up!");

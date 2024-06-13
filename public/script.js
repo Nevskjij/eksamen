@@ -24,8 +24,7 @@ async function updateButton(componentType, component) {
 // Load saved selections from localStorage
 function loadSelections() {
     const componentTypes = [
-        'hovedkort', 'case', 'cpu', 'CpuCooler',
-        'memory', 'disk', 'gpu', 'psu'
+        'hovedkort', 'case', 'cpu', 'CpuCooler', 'memory', 'disk', 'gpu', 'psu', 'caseAccessory', 'caseFan', 'externalHardDrive', 'fanController', 'headphones', 'keyboard', 'monitor', 'mouse', 'opticalDrive', 'os', 'soundCard', 'speakers', 'webcam', 'wiredNetworkCard', 'wirelessNetworkCard'
     ];
 
     componentTypes.forEach(type => {
@@ -75,8 +74,7 @@ bodyEL.addEventListener('mouseover', () => {
 
 function calculateTotal() {
     const componentTypes = [
-        'hovedkort', 'case', 'cpu', 'CpuCooler',
-        'memory', 'disk', 'gpu', 'psu'
+        'hovedkort', 'case', 'cpu', 'CpuCooler', 'memory', 'disk', 'gpu', 'psu', 'caseAccessory', 'caseFan', 'externalHardDrive', 'fanController', 'headphones', 'keyboard', 'monitor', 'mouse', 'opticalDrive', 'os', 'soundCard', 'speakers', 'webcam', 'wiredNetworkCard', 'wirelessNetworkCard'
     ];
 
     let total = 0;

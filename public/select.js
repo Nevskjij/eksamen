@@ -240,7 +240,6 @@ async function createComponentCard(component, componentType) {
 async function showComponents() {
     const componentType = getQueryParam('component');
     const components = await fetchComponents(componentType);
-    console.log(components);
 
     if (componentType === 'cpu') {
         const motherboardSocket = localStorage.getItem('motherboardSocket');

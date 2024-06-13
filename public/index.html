@@ -9,25 +9,61 @@
     <header>Norsk PcPartPicker</header>
     <main>
         <h1>Hovedkomponenter</h1>
-        <div id="hoved">
-            <p>Hovedkort</p>
-            <button id="hovedkort" onclick="selectComponent('hovedkort')">Legg til Hovedkort</button>
-            <p>Kabinett</p>
-            <button id="case" onclick="selectComponent('case')">Legg til Kabinett</button>
-            <p>Prosessor</p>
-            <button id="cpu" onclick="selectComponent('cpu')">Legg til Prosessor</button>
-            <p>Prosessor Kjøler</p>
-            <button id="CpuCooler" onclick="selectComponent('CpuCooler')">Legg til Prosessor Kjøler</button>
-            <p>Minne</p>
-            <button id="memory" onclick="selectComponent('memory')">Legg til Minne</button>
-            <p>Lagring</p>
-            <button id="disk" onclick="selectComponent('disk')">Legg til Lagring</button>
-            <p>Skjermkort</p>
-            <button id="gpu" onclick="selectComponent('gpu')">Legg til Skjermkort</button>
-            <p>Strømforsyning</p>
-            <button id="psu" onclick="selectComponent('psu')">Legg til Strømforsyning</button>
+            <div class="hoved">
+                <p>Hovedkort</p>
+                <button id="hovedkort" onclick="selectComponent('hovedkort')">Legg til Hovedkort</button>
+                <p>Kabinett</p>
+                <button id="case" onclick="selectComponent('case')">Legg til Kabinett</button>
+                <p>Prosessor</p>
+                <button id="cpu" onclick="selectComponent('cpu')">Legg til Prosessor</button>
+                <p>Prosessor Kjøler</p>
+                <button id="CpuCooler" onclick="selectComponent('CpuCooler')">Legg til Prosessor Kjøler</button>
+                <p>Minne</p>
+                <button id="memory" onclick="selectComponent('memory')">Legg til Minne</button>
+                <p>Lagring</p>
+                <button id="disk" onclick="selectComponent('disk')">Legg til Lagring</button>
+                <p>Skjermkort</p>
+                <button id="gpu" onclick="selectComponent('gpu')">Legg til Skjermkort</button>
+                <p>Strømforsyning</p>
+                <button id="psu" onclick="selectComponent('psu')">Legg til Strømforsyning</button>
+            </div>
+        <div id="sidebar">
+            <button id="export" onclick="exporter();">Eksporter</button>
+            <small id="melding" style="color:red"></small>
         </div>
         <h2>Ekstra komponenter</h2>
+            <div class="hoved">
+                <p>Tilbehør</p>
+                <button id="caseAccessory" onclick="selectComponent('caseAccessory')">Legg til tilbehør</button>
+                <p>Case Fan</p>
+                <button id="caseFan" onclick="selectComponent('caseFan')">Legg til vifter</button>
+                <p>Eksterne Disker</p>
+                <button id="externalHardDrive" onclick="selectComponent('externalHardDrive')">Legg til eksterne disker</button>
+                <p>Vifte Kontroller</p>
+                <button id="fanController" onclick="selectComponent('fanController')">Legg til vifte kontroller</button>
+                <p>Hodetelefoner</p>
+                <button id="headphones" onclick="selectComponent('headphones')">Legg til hodetelefoner</button>
+                <p>Tastatur</p>
+                <button id="keyboard" onclick="selectComponent('keyboard')">Legg til tastatur</button>
+                <p>Monitor</p>
+                <button id="monitor" onclick="selectComponent('monitor')">Legg til monitor</button>
+                <p>Mus</p>
+                <button id="mouse" onclick="selectComponent('mouse')">Legg til mus</button>
+                <p>Optisk Stasjon</p>
+                <button id="opticalDrive" onclick="selectComponent('opticalDrive')">Legg til optisk stasjon</button>
+                <p>Operativsystem</p>
+                <button id="os" onclick="selectComponent('os')">Legg til operativsystem</button>
+                <p>Lydkort</p>
+                <button id="soundCard" onclick="selectComponent('soundCard')">Legg til lydkort</button>
+                <p>Høytalere</p>
+                <button id="speakers" onclick="selectComponent('speakers')">Legg til høytalere</button>
+                <p>Webkamera</p>
+                <button id="webcam" onclick="selectComponent('webcam')">Legg til webkamera</button>
+                <p>Nettverkskort</p>
+                <button id="wiredNetworkCard" onclick="selectComponent('wiredNetworkCard')">Legg til nettverkskort</button>
+                <p>Nettverkskort</p>
+                <button id="wirelessNetworkCard" onclick="selectComponent('wirelessNetworkCard')">Legg til trådløs nettverkskort</button>
+            </div>
     </main>
     <footer></footer>
     <script src="script.js"></script>

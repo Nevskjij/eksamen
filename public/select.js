@@ -144,10 +144,11 @@ async function showComponents() {
             console.log(components);
         }
     } else if (componentType === 'hovedkort') { 
-        const cpubrand = localStorage.getItem('cpubrand');
+        const cpuBrand = localStorage.getItem('cpuBrand');
+        console.log(cpuBrand);
         const caseform = localStorage.getItem('case');
         const slots = localStorage.getItem('motherboardSlots');
-        if (cpubrand === "Intel") {
+        if (cpuBrand === "Intel") {
             // Use a while loop to properly iterate and remove elements
             let i = 0;
             while (i < components.length) {
@@ -158,7 +159,7 @@ async function showComponents() {
                 }
             }
             console.log(components);
-        } else if (cpubrand === "AMD") {
+        } else if (cpuBrand === "AMD") {
             // Use a while loop to properly iterate and remove elements
             let i = 0;
             while (i < components.length) {

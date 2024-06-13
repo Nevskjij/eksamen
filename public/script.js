@@ -91,5 +91,16 @@ function calculateTotal() {
     total = Math.round(total);
     const footer = document.querySelector('footer');
     footer.innerHTML = `Total pris ${total} kr`;
+
+    const cpu = JSON.parse(localStorage.getItem('cpu'));
+    const gpu = JSON.parse(localStorage.getItem('gpu'));
+    if (cpu.graphics == null && gpu == undefined) {
+        const melding = document.getElementById('melding');
+        melding.innerHTML = 'Du har ikke valgt en GPU eller CPU med integrert grafikk. Vennligst velg en av disse for å kunne fullføre byggingen.';
+    }
 }
 calculateTotal()
+
+function exporter() { 
+    console.log(123)
+}

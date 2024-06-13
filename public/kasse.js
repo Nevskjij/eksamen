@@ -34,7 +34,7 @@ async function start() {
             total += convertedPrice;
             // Oppretter HTML-elementer for å vise komponentens navn og pris i NOK
             let comp = document.createElement("h5")
-            comp.innerHTML = `${name}`;
+            comp.innerHTML = `${componentType.charAt(0).toUpperCase() + componentType.slice(1).replace(/([a-z])([A-Z])/g, '$1 $2')}: ${name}`;
             let prisEL = document.createElement("h5");
             prisEL.innerHTML = `${convertedPrice} kr`;
 

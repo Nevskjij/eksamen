@@ -36,6 +36,7 @@
                 <button class="fjern" onclick="fjern('psu')">Fjern</button>
             </div>
         <div id="sidebar">
+            <button id="export" onclick="localStorage.clear(); location.reload()">Tilbakestill</button>
             <button id="export" onclick="window.open('/kasse.html')">Kasse</button>
             <button id="export" onclick="exporter()">Eksporter</button>
             <small id="melding" style="color:red"></small>

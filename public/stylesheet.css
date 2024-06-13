@@ -207,3 +207,19 @@ h2 {
     align-items:center;
     margin-top:25px;
 }
+
+@media screen and (max-width: 600px) {
+    .grid-container {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+    #mains {
+        padding: 0;
+        width: 100%;
+    }
+    #mains h5, #mains p {
+        font-size: medium;
+    }
+    #tilbake {
+        width: 100%;
+    }
+}

@@ -2,24 +2,30 @@ const express = require("express");
 const path = require("path");
 const app = express();
 
+// Trengs for å tillate CORS (Cross-Origin Resource Sharing) noe som er vanligvis blocket av nettlesere
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
 
+// Middleware for å servere statiske filer fra "/public" mappen slik at backenden er hemmelig og frontend kan kun hente filer fra "/public"
 app.use(express.static(path.join(__dirname, "/public")));
+// Middleware for å parse URL-encoded body
 app.use(express.urlencoded({ extended: true }));
 
+// Viser til at hovedsiden er index.html som er funnet i samme mappe som denne filen
 app.get("/", (req, res) => {
     res.redirect("index.html");
 });
 
+//Henter kursinformasjon fra json-fil
 const pris = require("./json/pris.json");
 app.get("/kurs", (req, res) => {
     res.json(pris);
 });
 
+//Henter informasjon fra json-fil
 const motherboard = require("./json/motherboard.json");
 app.get("/hovedkort", (req, res) => {
     const filteredM = motherboard.filter(g => g.price !== null);
@@ -174,8 +180,7 @@ app.get("/wirelessNetworkCard", (req, res) => {
     res.json(filteredWirelessNetworkCard);
 });
 
-
-
+// Starter serveren på port 3000
 app.listen(3000, () => {
     console.log("Up!");
 });

@@ -61,7 +61,7 @@ async function createComponentCard(component, componentType) {
                 <div class="component-core-clock">Hastighet: ${component.core_clock} GHz</div>
                 <div class="component-boost-clock">Maksimal Hastighet: ${component.boost_clock} GHz</div>
                 <div class="component-tdp">Påkrevd Strøm ${component.tdp}w</div>
-                <div class="component-socket">Socket: ${component.socket}</div>
+                <div class="component-tdp">Integrert Skjermkort: ${component.graphics}</div>
             `;
             break;
         case 'CpuCooler':
